@@ -40,35 +40,46 @@ gRPC API calls to public _Dnaerys variant store_ service with _1000 Genomes data
 
 ## Examples
 
-Try open-ended questions to leverage analytical strength of LLMs, e.g.
+Try analytical or open-ended questions to leverage analytical strength of LLMs, e.g.
 
-> _What disease associated mutations exist in the KGP dataset, mostly for cancer related and blood related disorders ?
- Find affected people with recessive and dominant diseases and analyse clinical implications._
+> _What disease associated mutations exist in the KGP dataset, for example, for cancer related and blood related disorders ?
+   Find affected people with recessive and dominant diseases and analyse clinical implications._
 
-- analysis [result](https://claude.ai/public/artifacts/07bdc4ea-02db-414d-b25f-b2cdae7072d0)
+- a result might be similar to [some](https://claude.ai/public/artifacts/07bdc4ea-02db-414d-b25f-b2cdae7072d0)
+
+or 
+
+> _In what cardiac related genes, e.g. ion channels, variants in KGP dataset near catalytic residues or
+   ligand-binding pockets show strong depletion compared to flanking residues (±20 amino acids) ?_
+   
+- a result might be an [interactive application](https://claude.ai/public/artifacts/e81fa694-7de5-4fed-b903-e6cb23d02dd9)
 
 or
 
-> _Which variants in HBB gene are unexpectedly tolerated in the KGP dataset among those
-where at least several annotations provide strong evidence for expected pathogenicity ?_
+> _Are there patterns of variation in KGP dataset that suggest digenic or oligogenic interactions for Bardet-Biedl syndrome ?
+   Check variety of combinations and zygosity patterns._
+
+or
+
+> _Which variants in the HBB gene are unexpectedly tolerated in the KGP dataset with at least several annotation sources
+   in agreement with regard to their expected pathogenicity ?_
 
 - > _What is the most plausible explanation for why these variants present in healthy individuals ?_
 
 or
 
-> _Rank all rare KGP variants in genes associated with arrhythmia disorder by their expected clinical relevance, not by predicted pathogenicity alone._
+> _Rank all rare KGP variants in genes associated with arrhythmia disorder by their expected clinical relevance,
+   not by predicted pathogenicity alone._
 
-- > _Who are affected individuals with highest clinical priority variants ?_
-    - analysis [result](https://claude.ai/public/artifacts/c4fba7d9-545c-44ed-bc82-8c31a984e72a)
+- > _Who are the affected individuals with highest clinical priority variants ?_
+    - a result might be similar to [some](https://claude.ai/public/artifacts/c4fba7d9-545c-44ed-bc82-8c31a984e72a)
 
-or
 
-> _Are there patterns of variation in KGP dataset that suggest digenic inheritance patterns for Bardet-Biedl syndrome or skeletal dysplasias ?_
-
+_Feel free to open a PR with your favorite prompts_
 
 ## Available Tools
 
-Detailed description of 30 tools with their parameters can be found [here](https://github.com/dnaerys/onekgp-mcp/blob/master/src/main/java/org/dnaerys/mcp/OneKGPMCPServer.java)
+Description for 30 tools and parameters can be found [here](https://github.com/dnaerys/onekgp-mcp/blob/master/src/main/java/org/dnaerys/mcp/OneKGPMCPServer.java)
 
 ## Installation
 
