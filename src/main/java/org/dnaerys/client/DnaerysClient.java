@@ -29,8 +29,8 @@ public class DnaerysClient {
     final Integer MAX_RETURNED_ITEMS = 100;
 
     Annotations composeAnnotations(Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
-                                   String feature, String variantType, String consequences, String alphaMissense,
-                                   String clinSignificance) {
+                   String feature, String variantType, String consequences, String alphaMissense, String clinSignificance,
+                   Boolean biallelicOnly) {
         Annotations.Builder builder = Annotations.newBuilder();
 
         if (gnomadAfLessThan != null && gnomadAfLessThan > 0) {
@@ -102,6 +102,10 @@ public class DnaerysClient {
                     builder.addClnsgn(element);
                 }
             }
+        }
+
+        if (biallelicOnly != null && biallelicOnly) {
+            builder.setBiallelicOnly(biallelicOnly);
         }
 
         return builder.build();
@@ -280,10 +284,9 @@ public class DnaerysClient {
     }
 
     public long countVariantsInRegion(String chromosome, int start, int end, boolean selectHom, boolean selectHet,
-                                      String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
-                                      Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
-                                      String feature, String variantType, String consequences, String alphaMissense,
-                                      String clinSignificance) {
+                   String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength, Boolean biallelicOnly,
+                   Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype, String feature,
+                   String variantType, String consequences, String alphaMissense, String clinSignificance) {
         if (start < 0) return 0L;
         if (end < start) return 0L;
 
@@ -303,7 +306,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         try {
             GrpcChannel channel = GrpcChannel.getInstance();
@@ -335,10 +338,9 @@ public class DnaerysClient {
     }
 
     public long countVariantsInRegionInSample(String chromosome, int start, int end, String sample, boolean selectHom,
-                                              boolean selectHet, String refAllele, String altAllele, Integer varMinLength,
-                                              Integer varMaxLength, Float gnomadAfLessThan, Float gnomadAfGreaterThan,
-                                              String impact, String biotype, String feature, String variantType,
-                                              String consequences, String alphaMissense, String clinSignificance) {
+                   boolean selectHet, String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
+                   Boolean biallelicOnly, Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
+                   String feature, String variantType, String consequences, String alphaMissense, String clinSignificance) {
         if (start < 0) return 0L;
         if (end < start) return 0L;
         if (sample == null || sample.isEmpty()) return 0L;
@@ -359,7 +361,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         try {
             GrpcChannel channel = GrpcChannel.getInstance();
@@ -393,10 +395,10 @@ public class DnaerysClient {
 
 
     public List<String> selectVariantsInRegion(String chromosome, int start, int end, boolean selectHom, boolean selectHet,
-                                               String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
-                                               Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
-                                               String feature, String variantType, String consequences, String alphaMissense,
-                                               String clinSignificance, Integer skip, Integer limit) {
+                           String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength, Boolean biallelicOnly,
+                           Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype, String feature,
+                           String variantType, String consequences, String alphaMissense, String clinSignificance, Integer skip,
+                           Integer limit) {
         if (start < 0) return List.of("{}");
         if (end < start) return List.of("{}");
 
@@ -419,7 +421,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         List<Variant> variants = new ArrayList<>();
         List<String> alleles = new ArrayList<>();
@@ -468,11 +470,10 @@ public class DnaerysClient {
     }
 
     public List<String> selectVariantsInRegionInSample(String chromosome, int start, int end, String sample, boolean selectHom,
-                                                       boolean selectHet, String refAllele, String altAllele, Integer varMinLength,
-                                                       Integer varMaxLength, Float gnomadAfLessThan, Float gnomadAfGreaterThan,
-                                                       String impact, String biotype, String feature, String variantType,
-                                                       String consequences, String alphaMissense, String clinSignificance,
-                                                       Integer skip, Integer limit) {
+                           boolean selectHet, String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
+                           Boolean biallelicOnly, Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
+                           String feature, String variantType, String consequences, String alphaMissense, String clinSignificance,
+                           Integer skip, Integer limit) {
         if (start < 0) return List.of("{}");
         if (end < start) return List.of("{}");
         if (sample == null || sample.isEmpty()) return List.of("{}");
@@ -496,7 +497,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         List<Variant> variants = new ArrayList<>();
         List<String> alleles = new ArrayList<>();
@@ -545,10 +546,9 @@ public class DnaerysClient {
     }
 
     public long countSamplesInRegion(String chromosome, int start, int end, boolean selectHom, boolean selectHet,
-                                     String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
-                                     Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
-                                     String feature, String variantType, String consequences, String alphaMissense,
-                                     String clinSignificance) {
+                   String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength, Boolean biallelicOnly,
+                   Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype, String feature,
+                   String variantType, String consequences, String alphaMissense, String clinSignificance) {
         if (start < 0) return 0L;
         if (end < start) return 0L;
 
@@ -568,7 +568,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         try {
             GrpcChannel channel = GrpcChannel.getInstance();
@@ -598,10 +598,9 @@ public class DnaerysClient {
     }
 
     public List<String> selectSamplesInRegion(String chromosome, int start, int end, boolean selectHom, boolean selectHet,
-                                              String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
-                                              Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
-                                              String feature, String variantType, String consequences, String alphaMissense,
-                                              String clinSignificance) {
+                           String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength, Boolean biallelicOnly,
+                           Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype, String feature,
+                           String variantType, String consequences, String alphaMissense, String clinSignificance) {
         if (start < 0) return List.of("{}");
         if (end < start) return List.of("{}");
 
@@ -621,7 +620,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         try {
             GrpcChannel channel = GrpcChannel.getInstance();
@@ -654,10 +653,10 @@ public class DnaerysClient {
     }
 
     public List<String> selectDeNovo(String parent1, String parent2, String proband, String chromosome, int start, int end,
-                                     String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
-                                     Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
-                                     String feature, String variantType, String consequences, String alphaMissense,
-                                     String clinSignificance, Integer skip, Integer limit) {
+                           String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength, Boolean biallelicOnly,
+                           Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype, String feature,
+                           String variantType, String consequences, String alphaMissense, String clinSignificance, Integer skip,
+                           Integer limit) {
         if (parent1 == null || parent1.isEmpty()) return List.of("{}");
         if (parent2 == null || parent2.isEmpty()) return List.of("{}");
         if (proband == null || proband.isEmpty()) return List.of("{}");
@@ -684,7 +683,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         List<Variant> variants = new ArrayList<>();
         List<String> alleles = new ArrayList<>();
@@ -733,10 +732,10 @@ public class DnaerysClient {
     }
 
     public List<String> selectHetDominant(String affectedParent, String unaffectedParent, String proband, String chromosome,
-                                          int start, int end, String refAllele, String altAllele, Integer varMinLength,
-                                          Integer varMaxLength, Float gnomadAfLessThan, Float gnomadAfGreaterThan,
-                                          String impact, String biotype, String feature, String variantType, String consequences,
-                                          String alphaMissense, String clinSignificance, Integer skip, Integer limit) {
+                           int start, int end, String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
+                           Boolean biallelicOnly, Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
+                           String feature, String variantType, String consequences, String alphaMissense, String clinSignificance,
+                           Integer skip, Integer limit) {
         if (affectedParent == null || affectedParent.isEmpty()) return List.of("{}");
         if (unaffectedParent == null || unaffectedParent.isEmpty()) return List.of("{}");
         if (proband == null || proband.isEmpty()) return List.of("{}");
@@ -763,7 +762,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         List<Variant> variants = new ArrayList<>();
         List<String> alleles = new ArrayList<>();
@@ -812,10 +811,10 @@ public class DnaerysClient {
     }
 
     public List<String> selectHomRecessive(String unaffectedParent1, String unaffectedParent2, String proband, String chromosome,
-                                           int start, int end, String refAllele, String altAllele, Integer varMinLength,
-                                           Integer varMaxLength, Float gnomadAfLessThan, Float gnomadAfGreaterThan,
-                                           String impact, String biotype, String feature, String variantType, String consequences,
-                                           String alphaMissense, String clinSignificance, Integer skip, Integer limit) {
+                           int start, int end, String refAllele, String altAllele, Integer varMinLength, Integer varMaxLength,
+                           Boolean biallelicOnly, Float gnomadAfLessThan, Float gnomadAfGreaterThan, String impact, String biotype,
+                           String feature, String variantType, String consequences, String alphaMissense, String clinSignificance,
+                           Integer skip, Integer limit) {
         if (unaffectedParent1 == null || unaffectedParent1.isEmpty()) return List.of("{}");
         if (unaffectedParent2 == null || unaffectedParent2.isEmpty()) return List.of("{}");
         if (proband == null || proband.isEmpty()) return List.of("{}");
@@ -842,7 +841,7 @@ public class DnaerysClient {
         }
 
         Annotations annotations = composeAnnotations(gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
-                                                     variantType, consequences, alphaMissense, clinSignificance);
+                                                     variantType, consequences, alphaMissense, clinSignificance, biallelicOnly);
 
         List<Variant> variants = new ArrayList<>();
         List<String> alleles = new ArrayList<>();
@@ -897,14 +896,15 @@ public class DnaerysClient {
         try {
             GrpcChannel channel = GrpcChannel.getInstance();
 
-            KinshipRequest request =
-                KinshipRequest
+            KinshipDuoRequest request =
+                KinshipDuoRequest
                     .newBuilder()
-                    .addSamples(sample1)
-                    .addSamples(sample2)
+                    .setSample1(sample1)
+                    .setSample2(sample2)
+                    .setSeq(true)
                     .build();
 
-            List<Relatedness> response = channel.getBlockingStub().kinship(request).getRelList();
+            List<Relatedness> response = channel.getBlockingStub().kinshipDuo(request).getRelList();
             if (response.isEmpty()) return "";
             return response.getFirst().getDegree().toString();
         } catch (Throwable th) {

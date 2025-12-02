@@ -174,6 +174,12 @@ service DnaerysService {
     // can be disabled at runtime by setting "DISABLE_KINSHIP=true" env var
     rpc Kinship (KinshipRequest) returns (KinshipResponse) {}
 
+    // degrees of relatedness & kinship coefficients between 2 samples
+    //      https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3025716
+    // returns degree of relatedness
+    // can be disabled at runtime by setting "DISABLE_KINSHIP=true" env var
+    rpc KinshipDuo (KinshipDuoRequest) returns (KinshipResponse) {}
+
     // degrees of relatedness & kinship coefficients between samples in trio
     //      https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3025716
     // returns all pairs or filtered by degree of relatedness
@@ -295,6 +301,7 @@ message Annotations {
     // AlphaMissense class
     // https://www.science.org/doi/10.1126/science.adg7492
     repeated AlphaMissense am_class = 15;
+    bool biallelicOnly = 16; // select only biallelic variants, exclude multiallelic
 }
 
 // Selects variants in all samples in region
@@ -690,6 +697,15 @@ message KinshipRequest {
                   // by default calculations are performed in MT and occupy all cores available on the nodes
 }
 
+// Degree of relatedness & kinship coefficient between samples in duo
+// returns degree of relatedness
+message KinshipDuoRequest {
+    string sample1 = 1;
+    string sample2 = 2;
+    bool seq = 3; // calculate sequentially in a single thread to be gentle on CPU resources;
+                  // by default calculations are performed in MT and occupy all cores available on the nodes
+}
+
 // Degrees of relatedness & kinship coefficients for all pairs of samples in trio
 // returns all pairs or filtered by degree of relatedness
 message KinshipTrioRequest {
@@ -699,9 +715,9 @@ message KinshipTrioRequest {
     // filtering by degree: either 'degree' or 'threshold' (or none) should be provided, but not both
     KinshipDegree degree = 4; // report all pairs with relatedness closer or equal to 'degree'
     float threshold = 5; // [0,0.5) report pairs with relatedness closer than threshold,
-    // i.e. with kinship coefficient > threshold; default = 0 = return all pairs
+                         // i.e. with kinship coefficient > threshold; default = 0 = return all pairs
     bool seq = 6; // calculate sequentially in a single thread to be gentle on CPU resources;
-    // by default calculations are performed in MT and occupy all cores available on the nodes
+                  // by default calculations are performed in MT and occupy all cores available on the nodes
 }
 
 message KinshipResponse {

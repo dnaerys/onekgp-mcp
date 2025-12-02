@@ -101,6 +101,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countVariantsInRegion(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -110,6 +111,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -166,7 +168,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = true;
         return client.countVariantsInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                            variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact,
+                                            variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact,
                                             biotype, feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -182,6 +184,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countHomozygousVariantsInRegion(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -191,6 +194,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -247,7 +251,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = false;
         return client.countVariantsInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                            variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact,
+                                            variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact,
                                             biotype, feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -263,6 +267,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countHeterozygousVariantsInRegion(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -272,6 +277,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -328,7 +334,7 @@ public class OneKGPMCPServer {
         boolean selectHom = false;
         boolean selectHet = true;
         return client.countVariantsInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                            variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact,
+                                            variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact,
                                             biotype, feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -345,6 +351,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countVariantsInRegionInSample(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -355,6 +362,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -411,7 +419,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = true;
         return client.countVariantsInRegionInSample(chromosome, start, end, sampleId, selectHom, selectHet, refAllele, altAllele,
-                                                    variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                                    variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                                     impact, biotype, feature, variantType, consequences, alphaMissense,
                                                     clinSignificance);
     }
@@ -429,6 +437,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countHomozygousVariantsInRegionInSample(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -439,6 +448,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -495,7 +505,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = false;
         return client.countVariantsInRegionInSample(chromosome, start, end, sampleId, selectHom, selectHet, refAllele, altAllele,
-                                                    variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                                    variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                                     impact, biotype, feature, variantType, consequences, alphaMissense,
                                                     clinSignificance);
     }
@@ -513,6 +523,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countHeterozygousVariantsInRegionInSample(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -523,6 +534,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -579,7 +591,7 @@ public class OneKGPMCPServer {
         boolean selectHom = false;
         boolean selectHet = true;
         return client.countVariantsInRegionInSample(chromosome, start, end, sampleId, selectHom, selectHet, refAllele, altAllele,
-                                                    variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                                    variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                                     impact, biotype, feature, variantType, consequences, alphaMissense,
                                                     clinSignificance);
     }
@@ -597,6 +609,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> selectVariantsInRegion(
@@ -607,6 +620,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -665,7 +679,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = true;
         return client.selectVariantsInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                             variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                             variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                              feature, variantType, consequences, alphaMissense, clinSignificance, skip, limit);
     }
 
@@ -682,6 +696,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> selectHomozygousVariantsInRegion(
@@ -692,6 +707,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -750,7 +766,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = false;
         return client.selectVariantsInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                             variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                             variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                              feature, variantType, consequences, alphaMissense, clinSignificance, skip, limit);
     }
 
@@ -767,6 +783,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> selectHeterozygousVariantsInRegion(
@@ -777,6 +794,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -835,7 +853,7 @@ public class OneKGPMCPServer {
         boolean selectHom = false;
         boolean selectHet = true;
         return client.selectVariantsInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                             variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                             variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                              feature, variantType, consequences, alphaMissense, clinSignificance, skip, limit);
     }
 
@@ -853,6 +871,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> selectVariantsInRegionInSample(
@@ -864,6 +883,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -922,7 +942,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = true;
         return client.selectVariantsInRegionInSample(chromosome, start, end, sampleId, selectHom, selectHet, refAllele, altAllele,
-                                                     variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                                     variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                                      impact, biotype, feature, variantType, consequences, alphaMissense,
                                                      clinSignificance, skip, limit);
     }
@@ -941,6 +961,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> selectHomozygousVariantsInRegionInSample(
@@ -952,6 +973,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1010,7 +1032,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = false;
         return client.selectVariantsInRegionInSample(chromosome, start, end, sampleId, selectHom, selectHet, refAllele, altAllele,
-                                                     variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                                     variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                                      impact, biotype, feature, variantType, consequences, alphaMissense,
                                                      clinSignificance, skip, limit);
     }
@@ -1029,6 +1051,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> selectHeterozygousVariantsInRegionInSample(
@@ -1040,6 +1063,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1098,7 +1122,7 @@ public class OneKGPMCPServer {
         boolean selectHom = false;
         boolean selectHet = true;
         return client.selectVariantsInRegionInSample(chromosome, start, end, sampleId, selectHom, selectHet, refAllele, altAllele,
-                                                     variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                                     variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                                      impact, biotype, feature, variantType, consequences, alphaMissense,
                                                      clinSignificance, skip, limit);
     }
@@ -1115,6 +1139,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countSamplesWithVariants(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -1124,6 +1149,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1180,7 +1206,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = true;
         return client.countSamplesInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                           variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                           variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                            feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -1196,6 +1222,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countSamplesWithHomVariants(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -1205,6 +1232,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1261,7 +1289,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = false;
         return client.countSamplesInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                           variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                           variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                            feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -1277,6 +1305,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public Long countSamplesWithHetVariants(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -1286,6 +1315,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1342,7 +1372,7 @@ public class OneKGPMCPServer {
         boolean selectHom = false;
         boolean selectHet = true;
         return client.countSamplesInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                           variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                           variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                            feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -1359,6 +1389,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public List<String> selectSamplesWithVariants(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -1368,6 +1399,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1424,7 +1456,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = true;
         return client.selectSamplesInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                            variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                            variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                             feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -1441,6 +1473,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public List<String> selectSamplesWithHomVariants(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -1450,6 +1483,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1506,7 +1540,7 @@ public class OneKGPMCPServer {
         boolean selectHom = true;
         boolean selectHet = false;
         return client.selectSamplesInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele, variantMinLength,
-                                            variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
+                                            variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype,
                                             feature, variantType, consequences, alphaMissense, clinSignificance);
     }
 
@@ -1523,6 +1557,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction.")
     public List<String> selectSamplesWithHetVariants(
                             @ToolArg(description = "chromosome ID, in a form of 1, 2, ..., 22, X, Y, MT") String chromosome,
@@ -1532,6 +1567,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1588,7 +1624,7 @@ public class OneKGPMCPServer {
         boolean selectHom = false;
         boolean selectHet = true;
         return client.selectSamplesInRegion(chromosome, start, end, selectHom, selectHet, refAllele, altAllele,
-                                            variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                            variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                             impact, biotype, feature, variantType, consequences, alphaMissense,
                                             clinSignificance);
     }
@@ -1607,6 +1643,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> deNovoInTrio(
@@ -1620,6 +1657,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1676,7 +1714,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "number of items to be skipped in returned result", required = false) Integer skip,
                             @ToolArg(description = "limit items in returned result", required = false) Integer limit) {
         return client.selectDeNovo(parent1, parent2, proband, chromosome, start, end, refAllele, altAllele, variantMinLength,
-                                   variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
+                                   variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan, impact, biotype, feature,
                                    variantType, consequences, alphaMissense, clinSignificance, skip, limit);
     }
 
@@ -1694,6 +1732,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> hetDominantInTrio(
@@ -1707,6 +1746,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1763,7 +1803,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "number of items to be skipped in returned result", required = false) Integer skip,
                             @ToolArg(description = "limit items in returned result", required = false) Integer limit) {
         return client.selectHetDominant(affectedParent, unaffectedParent, proband, chromosome, start, end, refAllele, altAllele,
-                                        variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                        variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                         impact, biotype, feature, variantType, consequences, alphaMissense, clinSignificance, skip, limit);
     }
 
@@ -1781,6 +1821,7 @@ public class OneKGPMCPServer {
                         "Optional filtering by Sequence Ontology variant consequences. " +
                         "Optional filtering by AlphaMissense class. " +
                         "Optional filtering by ClinVar Clinical Significance annotations. " +
+                        "Optional filtering biallelic variants. " +
                         "If more than one filtering criteria of different types is provided, relation between them is logical conjunction. " +
                         "Use 'skip' and 'limit' parameters for pagination if needed. The Max value for limit = 100.")
     public List<String> homRecessiveInTrio(
@@ -1794,6 +1835,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "alternative allele bases (ALT)", required = false) String altAllele,
                             @ToolArg(description = "minimal variant length", required = false) Integer variantMinLength,
                             @ToolArg(description = "maximal variant length", required = false) Integer variantMaxLength,
+                            @ToolArg(description = "select biallelic variants only", required = false) Boolean biallelicOnly,
                             @ToolArg(description = "select variants with gnomAD AF < gnomadAfLessThan",
                                 required = false) Float gnomadAfLessThan,
                             @ToolArg(description = "select variants with gnomAD AF > gnomadAfGreaterThan",
@@ -1850,7 +1892,7 @@ public class OneKGPMCPServer {
                             @ToolArg(description = "number of items to be skipped in returned result", required = false) Integer skip,
                             @ToolArg(description = "limit items in returned result", required = false) Integer limit) {
         return client.selectHomRecessive(unaffectedParent1, unaffectedParent2, proband, chromosome, start, end, refAllele, altAllele,
-                                         variantMinLength, variantMaxLength, gnomadAfLessThan, gnomadAfGreaterThan,
+                                         variantMinLength, variantMaxLength, biallelicOnly, gnomadAfLessThan, gnomadAfGreaterThan,
                                          impact, biotype, feature, variantType, consequences, alphaMissense, clinSignificance, skip, limit);
     }
 
