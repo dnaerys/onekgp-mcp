@@ -49,7 +49,9 @@ alleles documented in the literature. Use KGP dataset of healthy individuals to
 No initial constraints for modifier types._
 
 - results might be _[some](https://claude.ai/public/artifacts/0185184c-96c6-4b2d-b1e3-d0d31a2c63df?fullscreen=true)_ _(Sonnet 4.5)_
-- same task for _[CACNA1C](https://claude.ai/public/artifacts/e857caf7-da6d-43f3-a8b7-36722a89f728?fullscreen=true)_, 
+- same task for _[KCNH2](https://claude.ai/public/artifacts/76761984-e06f-4fd9-9756-985692368cf9?fullscreen=true)_,
+_[SCN5A](https://claude.ai/public/artifacts/f7930887-37cb-4174-b1db-7408eff0780f?fullscreen=true)_,
+_[CACNA1C](https://claude.ai/public/artifacts/e857caf7-da6d-43f3-a8b7-36722a89f728?fullscreen=true)_, 
 _[LMNA](https://claude.ai/public/artifacts/f12146e4-d9cc-48e3-9918-98d20796af6b?fullscreen=true)_ and
 _[SPAST](https://claude.ai/public/artifacts/18ab99c2-d059-4592-969a-90c031290f8b?fullscreen=true)_ _(Sonnet 4.5)_
 
@@ -58,7 +60,7 @@ or
 > _In what cardiac related genes, e.g. ion channels, variants in KGP dataset near catalytic residues or
    ligand-binding pockets show strong depletion compared to flanking residues (±20 amino acids) ?_
    
-- results might be an [interactive application](https://claude.ai/public/artifacts/e81fa694-7de5-4fed-b903-e6cb23d02dd9?fullscreen=true) _(Sonnet 4.5)_
+- results might be [some](https://claude.ai/public/artifacts/e81fa694-7de5-4fed-b903-e6cb23d02dd9?fullscreen=true) _(Sonnet 4.5)_
 
 or
 
