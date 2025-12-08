@@ -42,14 +42,19 @@ MCP Server is implemented as a Java EE service, accessing _1KGP dataset_ via gRP
 Answers below are from _Sonnet 4.5_: some from _[multi-agent Research system](https://www.anthropic.com/engineering/multi-agent-research-system)_,
 some with _extended thinking mode_, and some from a single-agent system in normal mode.  
 
+
+#### Incomplete Penetrance & Genetic Resilience
+
 > _Identify potential modifier variants for well-known pathogenic alleles in TTN - variants that consistently co-occur
 in the same haplotype block with pathogenic alleles and may alter severity or penetrance. Conduct research for pathogenic
 alleles documented in the literature. Use KGP dataset of healthy individuals to find potential modifier variants. Start with 100kb for
 "the same haplotype block" definition, then extend if required. Evaluate statistical significance for the best modifier candidates found.
 No initial constraints for modifier types._
 
-- it feels a bit unreal how easily this thing can pull _[not entirely nonsensical](https://claude.ai/public/artifacts/0185184c-96c6-4b2d-b1e3-d0d31a2c63df?fullscreen=true)_
-events from a dataset with p = 2.29×10⁻¹³... which makes one wonder what else is possible with a proper study design, specialised disease and
+- it feels a bit unreal how easily this thing can pull _[not entirely nonsensical](https://claude.ai/public/artifacts/13684418-36b2-4640-8ad6-5156b933eed9?fullscreen=true)_
+events from a dataset with p = 2.29×10⁻¹³ (full [report](https://claude.ai/public/artifacts/864f857f-9018-4305-b5f0-e1095542547a?fullscreen=true)
+and [visualisation](https://github.com/user-attachments/assets/3a6722d9-6d42-47cf-815b-d354669977a3) attempt)...
+which makes one wonder what else is possible with a proper study design, specialised disease and
 [control](https://www.nature.com/articles/s41467-019-14079-0) cohorts, and a bit more dedication
 - same task for _[KCNH2](https://claude.ai/public/artifacts/76761984-e06f-4fd9-9756-985692368cf9?fullscreen=true)_,
 _[SCN5A](https://claude.ai/public/artifacts/f7930887-37cb-4174-b1db-7408eff0780f?fullscreen=true)_,
@@ -58,7 +63,11 @@ _[LMNA](https://claude.ai/public/artifacts/f12146e4-d9cc-48e3-9918-98d20796af6b?
 _[SPAST](https://claude.ai/public/artifacts/18ab99c2-d059-4592-969a-90c031290f8b?fullscreen=true)_ and
 _[BMPR2](https://claude.ai/public/artifacts/7163af75-20aa-41d4-8828-6accd7dc97f2?fullscreen=true)_
 
-or
+
+> _Which variants in the HBB gene are unexpectedly tolerated in the KGP dataset with at least several annotation sources
+   in agreement with regard to their expected pathogenicity ?_
+
+#### Structural Intolerance
 
 > _Which regions in POLR2A are most likely disease-critical, with strong purifying selection, based on available
 variation patterns across functional domains in KGP ? Do statistical evaluation._
@@ -71,27 +80,46 @@ variation patterns across functional domains in KGP ? Do statistical evaluation.
 [RPL11](https://claude.ai/public/artifacts/f3fe732b-671b-48f9-956a-439d2d46698b?fullscreen=true),
 [RPS26](https://claude.ai/public/artifacts/50c82a35-427e-494c-ab30-8b03b8dafc7c?fullscreen=true)
 
-or
 
 > _In what cardiac related genes, e.g. ion channels, variants in KGP dataset near catalytic residues or
-   ligand-binding pockets show strong depletion compared to flanking residues (±20 amino acids) ?_
+ligand-binding pockets show strong depletion compared to flanking residues (±20 amino acids) ?_
    
 - results might be [some](https://claude.ai/public/artifacts/e81fa694-7de5-4fed-b903-e6cb23d02dd9?fullscreen=true)
 
-or
+
+#### VUS Reclassification & AlphaMissense Integration
+
+> _Retrieve all variants in KGP dataset in the voltage-gated sodium channel gene family (SCN1A, SCN2A, SCN5A)
+currently classified as 'VUS' in ClinVar. Correlate their 'Likely Pathogenic' AlphaMissense classification
+with their frequency in this healthy cohort. Synthesize a reasoned argument to reclassify a subset of these
+as 'Likely Benign' based on the logic that pathogenic predictions by AlphaMissense are incompatible with the
+observed allele frequency in this healthy population._
+
+- [summary](https://claude.ai/public/artifacts/9a602e37-6795-4979-8b8c-48b052b33501?fullscreen=true),
+[report](https://claude.ai/public/artifacts/3888c6d2-9b6d-435c-88f3-fde159e5b241?fullscreen=true),
+[variants](https://claude.ai/public/artifacts/f9b6557b-c1e1-414f-ae1c-d62d256cb46a?fullscreen=true)
+
+> _Analyze the distribution of missense variants in the BRCA1 and BRCA2 genes found in the KGP dataset. Map these variants
+to the 3D protein structures (using your internal knowledge). Identify specific structural domains (e.g. the BRCT domain vs.
+unstructured loops) that tolerate a high density of AlphaMissense-predicted 'ambiguous' variants in this healthy cohort,
+effectively creating a 'map of benign tolerance' for future clinical reference._
+
+- [summary](https://claude.ai/public/artifacts/b06a5d2a-45cf-4a55-b045-f453d52b47c7?fullscreen=true),
+[report](https://claude.ai/public/artifacts/004375b5-76c6-43b1-9793-05f75ca993b2?fullscreen=true),
+[variants](https://claude.ai/public/artifacts/fda1f207-0002-4a22-be11-37f2634f9f75?fullscreen=true),
+[ASCII art](https://claude.ai/public/artifacts/36818f98-19fe-4df4-8067-87ee33cac703?fullscreen=true)
+
+
+#### Oligogenic Signatures
 
 > _Are there patterns of variation in KGP dataset that suggest digenic or oligogenic interactions for Bardet-Biedl syndrome ?
-   Check variety of combinations and zygosity patterns._
+Check variety of combinations and zygosity patterns._
 
-or
 
-> _Which variants in the HBB gene are unexpectedly tolerated in the KGP dataset with at least several annotation sources
-   in agreement with regard to their expected pathogenicity ?_
-
-or
+#### misc
 
 > _Rank all rare KGP variants in genes associated with arrhythmia disorder by their expected clinical relevance,
-   not by predicted pathogenicity alone. Find affected individuals with highest clinical priority variants._
+not by predicted pathogenicity alone. Find affected individuals with highest clinical priority variants._
 
 - results might be _[some](https://claude.ai/public/artifacts/c4fba7d9-545c-44ed-bc82-8c31a984e72a?fullscreen=true)_
 
@@ -131,7 +159,7 @@ To use with Claude Desktop, add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "OneKGPD": {
+    "OneKGPd": {
       "command": "java",
       "args": ["-jar", "/full/path/onekgpd-mcp-runner.jar"]
     }
