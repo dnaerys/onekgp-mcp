@@ -63,6 +63,16 @@ _[LMNA](https://claude.ai/public/artifacts/f12146e4-d9cc-48e3-9918-98d20796af6b?
 _[SPAST](https://claude.ai/public/artifacts/18ab99c2-d059-4592-969a-90c031290f8b?fullscreen=true)_ and
 _[BMPR2](https://claude.ai/public/artifacts/7163af75-20aa-41d4-8828-6accd7dc97f2?fullscreen=true)_
 
+> _Select samples carrying known dominant-negative variants in KRT5 or KRT14 genes (Epidermolysis Bullosa) in the KGP.
+Search for potential cis- or trans-acting rescue modifiers. Specifically, check if these samples carry variants that promote
+the upregulation of the homologous KRT6 or KRT16 genes (paralog compensation). Can you detect a statistically significant
+enrichment of 'paralog-boosting' promoter variants in these resilient carriers ?_
+
+- [summary](https://claude.ai/public/artifacts/999d73dd-7b28-47ea-90f1-62be182b15a8), 
+[report](https://claude.ai/public/artifacts/95b19c53-1864-4ebc-af48-f9f9bf50f9d2),
+[fig 1](https://github.com/user-attachments/assets/b25fbe94-cd4b-40c6-95da-a080030f8b25),
+[fig 2](https://github.com/user-attachments/assets/1c7df16f-6b0a-40ce-8712-042e2f14c182),
+[fig 3](https://github.com/user-attachments/assets/76b05924-f949-4c96-9fc3-23fd042b88b6)
 
 > _Which variants in the HBB gene are unexpectedly tolerated in the KGP dataset with at least several annotation sources
    in agreement with regard to their expected pathogenicity ?_
@@ -116,12 +126,14 @@ effectively creating a 'map of benign tolerance' for future clinical reference._
 Check variety of combinations and zygosity patterns._
 
 
-#### misc
+#### Protein-Protein Interactions
 
-> _Rank all rare KGP variants in genes associated with arrhythmia disorder by their expected clinical relevance,
-not by predicted pathogenicity alone. Find affected individuals with highest clinical priority variants._
+> _Analyze samples in the KGP dataset with missense variants located at the 'hinge' or 'head' domains in Cohesin complex genes
+(SMC1A, SMC3, RAD21). Perform a 'co-evolution' analysis - do samples with a destabilizing mutation in the SMC1A head domain
+tend to carry a complementary variant in the SMC3 head domain that restores electrostatic compatibility (e.g., a charge swap
+from Glu->Lys in one and Lys->Glu in the other) ?_
 
-- results might be _[some](https://claude.ai/public/artifacts/c4fba7d9-545c-44ed-bc82-8c31a984e72a?fullscreen=true)_
+- results might be _[some](https://claude.ai/public/artifacts/ea605022-296d-446d-989f-a9e7bae5ab6b)_
 
 
 _Feel free to open a PR with your favorite prompts_
@@ -133,7 +145,8 @@ Description for 30 tools and parameters can be found [here](https://github.com/d
 ## Installation
 
 Project can be run locally with MCP over _stdio_ transport, so the MCP server
-can be started as a subprocess by MCP clients (like Claude Desktop or Goose).
+can be started as a subprocess by MCP clients (e.g. Claude Desktop, [Goose](https://github.com/block/goose)
+or [others](https://github.com/punkpeye/awesome-mcp-clients)).
 
 - build the project and package it as a single _über-jar_:
     - jar is located in `target/onekgpd-mcp-runner.jar` and includes all dependencies
