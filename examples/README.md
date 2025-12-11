@@ -1,47 +1,22 @@
-# 1000 Genomes Project dataset MCP Server
-
-Natural language access to _**1000 Genomes Project dataset**_, hosted online in
-_[Dnaerys variant store](https://dnaerys.org/)_
- 
-
-Dataset is sequenced & aligned to GRCh38 by _New York Genome Center_
-- 2504 unrelated samples from the phase three panel
-- additional 698 samples, related to samples in the 2504 panel
-    - 3202 samples total (1598 males, 1604 females)
-- [dataset details](https://www.internationalgenome.org/data-portal/data-collection/30x-grch38) 
-
-### Key Features
-
-- _real-time_ access to _138 044 724_ unique variants and about _442 billion_ individual genotypes in 3202 samples
-
-- variant, sample, and genotype selection based on coordinates, annotations, zygosity
-
-- filtering by VEP, ClinVar, gnomAD AF and AlphaMissense annotations
-  
-- filtering by inheritance model (de novo, heterozygous dominant, homozygous recessive)
-
-## Deployments
-
-Remote MCP service is available online via _Streamable HTTP:_
-
-- http://db.dnaerys.org:80/mcp
-- https://db.dnaerys.org:443/mcp
-
-For local build with _stdio_ transport see [details below](https://github.com/dnaerys/onekgpd-mcp/?tab=readme-ov-file#installation)
-
-## Architecture
-
-MCP Server is implemented as a Java EE service, accessing _1KGP dataset_ via gRPC calls to public Dnaerys variant store service.
-
-- service implementation is based on [Quarkus MCP Server](https://docs.quarkiverse.io/quarkus-mcp-server/dev/)
-- provides MCP over _Streamable HTTP_, _HTTP/SSE_ and _STDIO_ transports
-
-
 ## Examples
+
+### Table of Content
+- [Models](#models)
+- [Incomplete Penetrance & Genetic Resilience](#incomplete-penetrance--genetic-resilience)
+- [Structural Intolerance](#structural-intolerance)
+- [VUS Reclassification & AlphaMissense Integration](#vus-reclassification--alphamissense-integration)
+- [Oligogenic Signatures](#oligogenic-signatures)
+- [Oligogenic Burden](#oligogenic-burden)
+- [Protein-Protein Interactions](#protein-protein-interactions)
+- [misc](#misc)
+
+
+#### Models
 
 Answers below are from _Sonnet 4.5_: some from _[multi-agent Research system](https://www.anthropic.com/engineering/multi-agent-research-system)_,
 some with _extended thinking mode_, and some from a single-agent system in normal mode.  
 
+---
 
 #### Incomplete Penetrance & Genetic Resilience
 
@@ -74,6 +49,10 @@ enrichment of 'paralog-boosting' promoter variants in these resilient carriers ?
 [fig 2](https://github.com/user-attachments/assets/1c7df16f-6b0a-40ce-8712-042e2f14c182),
 [fig 3](https://github.com/user-attachments/assets/76b05924-f949-4c96-9fc3-23fd042b88b6)
 
+> _Which variants in the HBB gene are unexpectedly tolerated in the KGP dataset with at least several annotation sources
+   in agreement with regard to their expected pathogenicity ?_
+
+---
 
 #### Structural Intolerance
 
@@ -88,12 +67,21 @@ variation patterns across functional domains in KGP ? Do statistical evaluation.
 [RPL11](https://claude.ai/public/artifacts/f3fe732b-671b-48f9-956a-439d2d46698b?fullscreen=true),
 [RPS26](https://claude.ai/public/artifacts/50c82a35-427e-494c-ab30-8b03b8dafc7c?fullscreen=true)
 
+> _Examine the GBA gene (Gaucher disease). Map all missense variants found in the healthy KGP cohort to the Glucocerebrosidase
+active site (residues E235 and E340 and the surrounding pocket). Calculate the minimum distance of each variant to the catalytic
+glutamate residues. Is there a defined 'sphere of intolerance' (e.g., < 5 Angstroms) around the active site where zero variants
+are observed ? At what radial distance does the variant density return to the background rate ?_
+
+- [report](https://claude.ai/public/artifacts/e707ecbc-fec2-4fad-9456-89d2fc34ecae?fullscreen=true),
+[variants](https://claude.ai/public/artifacts/91d502e5-1419-42a2-acc6-49c56024dcb3),
+[vis](https://github.com/user-attachments/assets/cc35e1d0-8f8c-4d01-9b36-4740e180dc50)
 
 > _In what cardiac related genes, e.g. ion channels, variants in KGP dataset near catalytic residues or
 ligand-binding pockets show strong depletion compared to flanking residues (±20 amino acids) ?_
    
 - results might be [some](https://claude.ai/public/artifacts/e81fa694-7de5-4fed-b903-e6cb23d02dd9?fullscreen=true)
 
+---
 
 #### VUS Reclassification & AlphaMissense Integration
 
@@ -107,6 +95,37 @@ observed allele frequency in this healthy population._
 [report](https://claude.ai/public/artifacts/3888c6d2-9b6d-435c-88f3-fde159e5b241?fullscreen=true),
 [variants](https://claude.ai/public/artifacts/f9b6557b-c1e1-414f-ae1c-d62d256cb46a?fullscreen=true)
 
+> _Analyze the distribution of missense variants in the BRCA1 and BRCA2 genes found in the KGP dataset.
+Map these variants to the 3D protein structures. Identify specific structural domains (e.g. the BRCT domain vs.
+unstructured loops) that tolerate a high density of AlphaMissense-predicted 'ambiguous' variants in this
+healthy cohort, effectively creating a 'map of benign tolerance' for future clinical reference._
+
+- [summary](https://claude.ai/public/artifacts/b06a5d2a-45cf-4a55-b045-f453d52b47c7?fullscreen=true),
+[report](https://claude.ai/public/artifacts/004375b5-76c6-43b1-9793-05f75ca993b2?fullscreen=true),
+[variants](https://claude.ai/public/artifacts/fda1f207-0002-4a22-be11-37f2634f9f75?fullscreen=true),
+[ASCII art](https://claude.ai/public/artifacts/36818f98-19fe-4df4-8067-87ee33cac703?fullscreen=true)
+
+---
+
+#### Oligogenic Signatures
+
+> _Are there patterns of variation in KGP dataset that suggest digenic or oligogenic interactions for Bardet-Biedl syndrome ?
+Check variety of combinations and zygosity patterns._
+
+---
+
+#### Oligogenic Burden
+
+> _Calculate the 'Ciliary Mutational Load' for every individual in the KGP dataset. Aggregate all rare, non-synonymous variants
+across the entire Bardet-Biedl Syndrome (BBS) gene panel (BBS1 through BBS21). Is there a clear 'cliff' or maximum mutational
+burden observed in healthy individuals ? Determine if the healthy cohort contains any 'triallelic' carriers (homozygous at one
+locus, heterozygous at another) and model why they do not display the BBS phenotype._
+
+- [summary](https://claude.ai/public/artifacts/5dcd88d4-cb08-43b7-99b6-a473dd08a90c?fullscreen=true),
+[report](https://claude.ai/public/artifacts/12c431d4-6ce2-4272-a069-26d6c455344d?fullscreen=true),
+[vis](https://github.com/user-attachments/assets/46e85ec2-5c3b-4239-9a9e-77a5554152fc)
+
+---
 
 #### Protein-Protein Interactions
 
@@ -117,55 +136,15 @@ from Glu->Lys in one and Lys->Glu in the other) ?_
 
 - results might be _[some](https://claude.ai/public/artifacts/ea605022-296d-446d-989f-a9e7bae5ab6b)_
 
-_More examples [here](https://github.com/dnaerys/onekgpd-mcp/blob/master/examples/README.md)_
+---
 
-## Available Tools
+#### misc
 
-Description for 30 tools and parameters can be found [here](https://github.com/dnaerys/onekgpd-mcp/blob/master/src/main/java/org/dnaerys/mcp/OneKGPMCPServer.java)
+> _Rank all rare KGP variants in genes associated with arrhythmia disorder by their expected clinical relevance,
+not by predicted pathogenicity alone. Find affected individuals with highest clinical priority variants._
 
-## Installation
+- _[report](https://claude.ai/public/artifacts/c4fba7d9-545c-44ed-bc82-8c31a984e72a?fullscreen=true)_
 
-Project can be run locally with MCP over _stdio_ transport, so the MCP server
-can be started as a subprocess by MCP clients (e.g. Claude Desktop, [Goose](https://github.com/block/goose)
-or [others](https://github.com/punkpeye/awesome-mcp-clients)).
+---
 
-- build the project and package it as a single _über-jar_:
-    - jar is located in `target/onekgpd-mcp-runner.jar` and includes all dependencies
-
-```shell script
-./mvnw clean
-./mvnw package -DskipTests -Dquarkus.package.jar.type=uber-jar
-```
-
-- start from MCP client with a full path to the jar file (for _stdio_ transport,
-  default configuration) or run as a separate service with streamable HTTP transport
-  (requires a change in [configuration](https://github.com/dnaerys/onekgpd-mcp/blob/master/src/main/resources/application.properties)) 
-    - project expects _JRE 21_ to be available at runtime 
-
-```shell script
-java -jar <full path>/onekgpd-mcp-runner.jar
-```
-
-#### Usage with Claude Desktop
-
-To use with Claude Desktop, add to `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "OneKGPd": {
-      "command": "java",
-      "args": ["-jar", "/full/path/onekgpd-mcp-runner.jar"]
-    }
-  }
-}
-```
-
-#### Verification
-
-> How many variants exist in 1000 Genome Project ?
-
-
-## License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](https://github.com/dnaerys/onekgpd-mcp/blob/master/LICENSE) file for details.
+_Feel free to open a PR with your favorite prompts_
