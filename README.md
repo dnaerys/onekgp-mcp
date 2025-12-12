@@ -63,6 +63,16 @@ _[LMNA](https://claude.ai/public/artifacts/f12146e4-d9cc-48e3-9918-98d20796af6b?
 _[SPAST](https://claude.ai/public/artifacts/18ab99c2-d059-4592-969a-90c031290f8b?fullscreen=true)_ and
 _[BMPR2](https://claude.ai/public/artifacts/7163af75-20aa-41d4-8828-6accd7dc97f2?fullscreen=true)_
 
+
+> _Identify samples in the KGP dataset that are homozygous for variants classified as 'Pathogenic' in ClinVar for severe
+autosomal recessive metabolic disorders. For these specific samples, scan their exomes for enrichment of variants in known
+suppressor genes or alternative metabolic pathways that might compensate for the primary defect. Propose a mechanism of
+compensation based on pathway analysis._
+
+- _publication-ready reports for_ _[AATD - SERPINA1 - PiZZ](https://claude.ai/public/artifacts/db6e6590-4b0a-4740-831a-7ddaf779ea3a?fullscreen=true)_
+_and_ _[Cystic Fibrosis & Sickle Cell Disease](https://claude.ai/public/artifacts/f42b637a-7a95-4ee9-97e6-24648351e650?fullscreen=true)_
+
+
 > _Select samples carrying known dominant-negative variants in KRT5 or KRT14 genes (Epidermolysis Bullosa) in the KGP.
 Search for potential cis- or trans-acting rescue modifiers. Specifically, check if these samples carry variants that promote
 the upregulation of the homologous KRT6 or KRT16 genes (paralog compensation). Can you detect a statistically significant
